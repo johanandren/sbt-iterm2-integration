@@ -1,5 +1,8 @@
 package com.markatta
 
+import java.nio.charset.StandardCharsets
+
+import fastparse.utils.Base64
 import sbt.{Def, _}
 import sbt.Keys._
 import sbt.plugins.JvmPlugin
@@ -30,20 +33,25 @@ object Sbtiterm2integrationPlugin extends AutoPlugin {
     onLoad := {
       state: State => {
         print("\u001b]1337;ShellIntegrationVersion=6;shell=sbt\u0007")
+
         if (!hookAdded) {
           hookAdded = true
           setIterm2ProfileOnLoad.value.foreach { name =>
             print(s"\u001b]1337;SetProfile=${name}\u0007")
             // restore original profile if possible
             sys.env.get("ITERM_PROFILE").foreach { originalProfile =>
-              java.lang.Runtime.getRuntime.addShutdownHook(new Thread(new Runnable() {
-                override def run(): Unit = {
-                  print(s"\u001b]1337;SetProfile=${originalProfile}\u0007")
-                }
+              java.lang.Runtime.getRuntime.addShutdownHook(new Thread(() => {
+                print(s"\u001b]1337;SetProfile=${originalProfile}\u0007")
               }))
             }
           }
         }
+        // report project as a UserVar for use in a badge for example
+        val session = Project.session(state)
+        val base64projectName = Base64.Encoder(session.current.project.getBytes(StandardCharsets.UTF_8)).toBase64
+        println(s"project: ${session.current.project} - $base64projectName")
+        print(s"\u001b]1337;SetUserVar=currentProject=${base64projectName}\u0007")
+
         onLoad.value(state)
       }
     },

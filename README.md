@@ -21,3 +21,6 @@ Switching to a specific iTerm2 profile when sbt loads can be done by setting
 `setIterm2ProfileOnLoad in Global := Some("profile-name")`. When the sbt JVM exits 
 the original profile is restored.
 
+### Current project set as user var
+The root project name is published as a iTerm2 user var named `currentProject`
+making it possible to use in a badge like so: `\(user.currentProject)`
