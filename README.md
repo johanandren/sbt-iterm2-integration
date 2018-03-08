@@ -6,19 +6,18 @@ Plugin that integrates with iTerm2 on MacOS
 
 This plugin requires sbt 1.0.0+
 
-### Testing
+As this is a machine/user-local plugin rather than one to add to a project it is best 
+to enable it globally by adding the plugin in a `~/.sbt/1.0/plugins/iterm2.sbt` file, 
+the settings can also be defined globally by putting them one level above that file - 
+`~/.sbt/plugins/iterm2.sbt`   
 
-Run `test` for regular unit tests.
+### Prompt marks
+By default prompt mark reporting to iTerm2 is enabled, this allows for scrolling between
+prompts, alert on next mark etc. (see https://iterm2.com/documentation-shell-integration.html for more details)
+It can be disabled by setting `addIterm2PromptMarks := false`
 
-Run `scripted` for [sbt script tests](http://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html).
+### Profile switching
+Switching to a specific iTerm2 profile when sbt loads can be done by setting 
+`setIterm2ProfileOnLoad in Global := Some("profile-name")`. When the sbt JVM exits 
+the original profile is restored.
 
-### Publishing
-
-1. publish your source to GitHub
-2. [create a bintray account](https://bintray.com/signup/index) and [set up bintray credentials](https://github.com/sbt/sbt-bintray#publishing)
-3. create a bintray repository `sbt-plugins` 
-4. update your bintray publishing settings in `build.sbt`
-5. `sbt publish`
-6. [request inclusion in sbt-plugin-releases](https://bintray.com/sbt/sbt-plugin-releases)
-7. [Add your plugin to the community plugins list](https://github.com/sbt/website#attention-plugin-authors)
-8. [Claim your project an Scaladex](https://github.com/scalacenter/scaladex-contrib#claim-your-project)
