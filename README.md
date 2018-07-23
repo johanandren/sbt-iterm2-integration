@@ -16,6 +16,8 @@ By default prompt mark reporting to iTerm2 is enabled, this allows for scrolling
 prompts, alert on next mark etc. (see https://iterm2.com/documentation-shell-integration.html for more details)
 It can be disabled by setting `addIterm2PromptMarks := false`
 
+If a project has a custom prompt already this prompt marking will not work.
+
 ### Profile switching
 Switching to a specific iTerm2 profile when sbt loads can be done by setting 
 `setIterm2ProfileOnLoad in Global := Some("profile-name")`. When the sbt JVM exits 
