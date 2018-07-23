@@ -32,7 +32,7 @@ object Sbtiterm2integrationPlugin extends AutoPlugin {
     inIterm2 := {
       sys.env.get("TERM_PROGRAM").contains("iTerm.app")
     },
-    addIterm2PromptMarks := inIterm2.value && true,
+    addIterm2PromptMarks := inIterm2.value,
     setIterm2ProfileOnLoad := None,
     onLoad := {
       if (inIterm2.value) {
