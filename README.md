@@ -7,9 +7,7 @@ Plugin that integrates with iTerm2 on MacOS
 This plugin requires sbt 1.0.0+
 
 As this is a machine/user-local plugin rather than one to add to a project it is best 
-to enable it globally by adding the plugin in a `~/.sbt/1.0/plugins/iterm2.sbt` file, 
-the settings can also be defined globally by putting them one level above that file - 
-`~/.sbt/plugins/iterm2.sbt`   
+to enable it globally by adding the plugin in a `~/.sbt/1.0/plugins/iterm2.sbt` file
 
 ### Prompt marks
 By default prompt mark reporting to iTerm2 is enabled, this allows for scrolling between
